@@ -1,0 +1,31 @@
+# Council Configuration
+
+ai_models:
+  - name: claude
+    role: reasoning
+  - name: gpt
+    role: edge_cases
+  - name: gemini
+    role: speed
+
+human_pool:
+  channel: "#flux-council"
+  weight: 2  # humans count more
+  
+tiers:
+  routine:
+    ai_consensus: true
+    human_required: false
+    timeout: 2h
+  major:
+    ai_required: true
+    human_required: 1
+    timeout: 4h
+  critical:
+    ai_required: true
+    human_required: majority
+    timeout: none
+
+alert_fatigue:
+  digest_threshold: 0.98
+  digest_time: "09:00"
